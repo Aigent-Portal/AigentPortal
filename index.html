@@ -64,20 +64,24 @@
          .carousel-slides {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            height: 100%; /* Ensure slides container takes full height */
          }
          .carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
             box-sizing: border-box;
+            height: 100%; /* Ensure slide takes full height */
          }
-         /* Added default scale and transition to images for zoom effect */
          .carousel-slide img {
              transition: transform 0.5s ease-in-out;
-             transform: scale(1.0); /* Default scale */
+             transform: scale(1.0);
+             display: block; /* Ensure image behaves like a block */
+             width: 100%; /* Make image fill width */
+             height: 100%; /* Make image fill height */
+             object-fit: contain; /* Keep entire image visible */
          }
-         /* Style for the active slide's image - zoomed in */
          .carousel-slide-active img {
-             transform: scale(1.05); /* Zoomed-in scale */
+             transform: scale(1.05);
          }
          .carousel-button {
             position: absolute;
@@ -86,22 +90,37 @@
             background-color: rgba(0, 0, 0, 0.4);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            /* Adjusted padding and font size */
+            padding: 0.25rem 0.75rem; /* Smaller padding */
+            font-size: 1.25rem; /* Smaller font */
+            line-height: 1;
             border-radius: 9999px;
             cursor: pointer;
             z-index: 10;
-            font-size: 1.5rem;
-            line-height: 1;
          }
          .carousel-button:hover {
             background-color: rgba(0, 0, 0, 0.7);
          }
          .carousel-button.prev {
-            left: 1rem;
+            left: 0.5rem; /* Closer to edge */
          }
          .carousel-button.next {
-            right: 1rem;
+            right: 0.5rem; /* Closer to edge */
          }
+         /* Larger buttons on medium screens and up */
+         @media (min-width: 768px) {
+            .carousel-button {
+                padding: 0.5rem 1rem;
+                font-size: 1.5rem;
+            }
+            .carousel-button.prev {
+               left: 1rem;
+            }
+            .carousel-button.next {
+               right: 1rem;
+            }
+         }
+
     </style>
 </head>
 <body class="bg-stone-100 text-gray-900">
@@ -152,28 +171,28 @@
                     <span class="text-gray-600 text-sm pt-2 sm:pt-0">Coming soon to iOS!</span>
                 </div>
 
-                <div id="image-carousel" class="mt-12 max-w-4xl mx-auto section-fade-in delay-3 carousel-container rounded-lg shadow-xl bg-stone-300 aspect-video">
+                <div id="image-carousel" class="mt-12 max-w-4xl mx-auto section-fade-in delay-3 carousel-container rounded-lg shadow-xl bg-stone-300 h-72 sm:h-80 md:h-96 lg:h-[500px]">
                     <div class="carousel-slides">
-                        <div class="carousel-slide flex items-center justify-center">
-                            <img src="1.png" alt="Aigent Portal Screenshot 1" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="1.png" alt="Aigent Portal Screenshot 1" class="transform scale-100">
                         </div>
-                        <div class="carousel-slide flex items-center justify-center">
-                            <img src="2.png" alt="Aigent Portal Screenshot 2" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="2.png" alt="Aigent Portal Screenshot 2" class="transform scale-100">
                         </div>
-                        <div class="carousel-slide flex items-center justify-center">
-                             <img src="3.png" alt="Aigent Portal Screenshot 3" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="3.png" alt="Aigent Portal Screenshot 3" class="transform scale-100">
                         </div>
-                         <div class="carousel-slide flex items-center justify-center">
-                             <img src="4.png" alt="Aigent Portal Screenshot 4" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="4.png" alt="Aigent Portal Screenshot 4" class="transform scale-100">
                         </div>
-                         <div class="carousel-slide flex items-center justify-center">
-                             <img src="5.png" alt="Aigent Portal Screenshot 5" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="5.png" alt="Aigent Portal Screenshot 5" class="transform scale-100">
                         </div>
-                         <div class="carousel-slide flex items-center justify-center">
-                             <img src="6.png" alt="Aigent Portal Screenshot 6" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="6.png" alt="Aigent Portal Screenshot 6" class="transform scale-100">
                         </div>
-                         <div class="carousel-slide flex items-center justify-center">
-                             <img src="7.png" alt="Aigent Portal Screenshot 7" class="block max-w-full max-h-full h-auto object-contain p-1 transform scale-100">
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="7.png" alt="Aigent Portal Screenshot 7" class="transform scale-100">
                         </div>
                     </div>
                     <button class="carousel-button prev" aria-label="Previous Slide">&#10094;</button>
@@ -293,8 +312,4 @@
                     </details>
                      <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-2">
                         <summary class="font-semibold text-gray-800 list-none">Is Aigent Portal secure?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Yes. We don't require API keys, collect zero user data, and store all configuration locally on your device. Communication is direct between your app and your webhook URL. Header authentication is supported for endpoint security.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-3">
-                        <summary class="font-semibold text-gray-800 list-none">What kind of AI agents or automations can I connect?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Any system th
+                        <p class="mt-2 text-gray-700 text-sm">Yes. We don't require API keys, collect zero user data, and store all configuration locally on your device. Communication is direct between your app and your webhook URL. Header authentication is suppor
