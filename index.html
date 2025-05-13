@@ -88,4 +88,237 @@
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.4);
-            color
+            color: white;
+            border: none;
+            /* Adjusted padding and font size */
+            padding: 0.25rem 0.75rem; /* Smaller padding */
+            font-size: 1.25rem; /* Smaller font */
+            line-height: 1;
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+        }
+         .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+         .carousel-button.prev {
+            left: 0.5rem; /* Closer to edge */
+        }
+         .carousel-button.next {
+            right: 0.5rem; /* Closer to edge */
+        }
+         /* Larger buttons on medium screens and up */
+         @media (min-width: 768px) {
+            .carousel-button {
+                padding: 0.5rem 1rem;
+                font-size: 1.5rem;
+            }
+            .carousel-button.prev {
+               left: 1rem;
+            }
+            .carousel-button.next {
+               right: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-stone-100 text-gray-900">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#hero" title="Aigent Portal Home" class="flex-shrink-0">
+                <img src="logo.png" alt="Aigent Portal Logo" class="h-8 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="text-gray-700 hover:text-blue-700 transition duration-300">Features</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-blue-700 transition duration-300">How it Works</a>
+                <a href="#security" class="text-gray-700 hover:text-blue-700 transition duration-300">Security</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-700 transition duration-300">Q&A</a>
+                <a href="#download" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-sm font-medium">Download App</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-700 focus:outline-none focus:text-blue-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 w-full z-40">
+             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Features</a>
+                <a href="#how-it-works" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">How it Works</a>
+                <a href="#security" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Security</a>
+                <a href="#faq" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Q&A</a>
+                <a href="#download" class="block bg-blue-600 text-white text-center mx-3 my-2 px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-base font-medium">Download App</a>
+             </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero" class="bg-gradient-to-br from-stone-50 to-stone-200 pt-20 pb-16 md:pt-32 md:pb-24">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight section-fade-in">
+                    Unlock Your AI Agents & Automations, <span class="text-blue-700">Securely on the Go.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto section-fade-in delay-1">
+                    Aigent Portal: The simple, secure mobile interface for interacting with your webhook-powered AI systems. Chat, trigger, and manage – all from your phone or tablet.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12 section-fade-in delay-2">
+                    <a href="#download" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg w-full sm:w-auto">
+                        Download on Google Play
+                    </a>
+                    <span class="text-gray-600 text-sm pt-2 sm:pt-0">Coming soon to iOS!</span>
+                </div>
+
+                <div id="image-carousel" class="mt-12 max-w-4xl mx-auto section-fade-in delay-3 carousel-container rounded-lg shadow-xl bg-stone-300 h-72 sm:h-80 md:h-96 lg:h-[500px]">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="1.png" alt="Aigent Portal Screenshot 1" class="transform scale-100">
+                        </div>
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="2.png" alt="Aigent Portal Screenshot 2" class="transform scale-100">
+                        </div>
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="3.png" alt="Aigent Portal Screenshot 3" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="4.png" alt="Aigent Portal Screenshot 4" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="5.png" alt="Aigent Portal Screenshot 5" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="6.png" alt="Aigent Portal Screenshot 6" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="7.png" alt="Aigent Portal Screenshot 7" class="transform scale-100">
+                        </div>
+                    </div>
+                    <button class="carousel-button prev" aria-label="Previous Slide">❮</button>
+                    <button class="carousel-button next" aria-label="Next Slide">❯</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 md:py-24 bg-stone-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Your AI Command Center in Your Pocket
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-1 text-center sm:text-left">
+                        <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Direct AI Chat</h3>
+                        <p class="text-gray-700 mb-4">Engage in real-time conversations. Send text, voice, images, documents, or snap pictures directly within the app.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Trigger Automations Instantly</h3>
+                        <p class="text-gray-700 mb-4">Kick off predefined webhook automations with a simple tap from anywhere. Streamline workflows effortlessly.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-3 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Intuitive & Easy UI</h3>
+                        <p class="text-gray-700 mb-4">Designed with simplicity in mind. A clean, dedicated interface makes managing complex AI interactions straightforward.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Webhook Diagnostics</h3>
+                        <p class="text-gray-700 mb-4">Facing connection issues? Use the built-in diagnostic tools to test your webhook URLs and troubleshoot problems quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16 md:py-24 bg-gradient-to-br from-stone-50 to-stone-200">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Simple Setup, Secure Connection
+                </h2>
+                <div class="max-w-2xl mx-auto section-fade-in delay-1">
+                     <div class="space-y-6">
+                         <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">1</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Configure Your Agent</h4>
+                                <p class="text-gray-700">Set up your AI agent or automation to accept requests via a secure webhook URL.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Add to Aigent Portal</h4>
+                                <p class="text-gray-700">Enter the webhook URL and any necessary header authentication details into the Aigent Portal app.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Interact & Automate</h4>
+                                <p class="text-gray-700">Start chatting or triggering automations directly and securely. All data stays local!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="py-16 md:py-24 bg-stone-100">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-fade-in">
+                    Your Security is Our Priority. <span class="text-blue-700">Period.</span>
+                </h2>
+                <p class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto section-fade-in delay-1">
+                    We built Aigent Portal with a privacy-first approach. Your data remains yours, always.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                     <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">No Sensitive Credentials</h4>
+                        <p class="text-gray-700">Connects via webhooks and supports header authentication – no need to store vulnerable API keys in the app.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm ring-2 ring-blue-200 section-fade-in delay-3">
+                        <h4 class="text-lg font-semibold text-blue-800 mb-2">We Collect ZERO Data</h4>
+                        <p class="text-blue-700">Aigent Portal does *not* collect, track, or transmit *any* of your personal data or conversation content. Ever.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Everything Stays On-Device</h4>
+                        <p class="text-gray-700">All your configurations (webhook URLs, auth details) are stored securely and solely on your local device.</p>
+                    </div>
+                </div>
+                <p class="mt-12 text-gray-700 section-fade-in delay-4">
+                    See our full <a href="#privacy-policy" class="text-blue-700 hover:underline">Privacy Policy</a> below for details.
+                </p>
+            </div>
+        </section>
+<section id="faq" class="py-16 md:py-24 bg-stone-200">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Frequently Asked Questions
+                </h2>
+                <div class="max-w-4xl mx-auto space-y-4">
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-1">
+                        <summary class="font-semibold text-gray-800 list-none">What are webhooks?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Webhooks are automated messages sent from apps when something happens. Aigent Portal sends your inputs (text, files, triggers) to a unique URL you provide, which your AI agent or automation listens to.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-2">
+                        <summary class="font-semibold text-gray-800 list-none">Is Aigent Portal secure?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Yes. We don't require API keys, collect zero user data, and store all configuration locally on your device. Communication is direct between your app and your webhook URL. Header authentication is supported for endpoint security.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-3">
+                        <summary class="font-semibold text-gray-800 list-none">What kind of AI agents or automations can I connect?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Any system that can listen and respond to incoming webhooks! This includes custom AI models, platforms like n8n or Make, cloud functions, or your own backend applications.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
+                        <summary class="font-semibold text-gray-800 list-none">Do I need my own server?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">You need a publicly accessible webhook URL for your AI agent/automation. This could be self-hosted, a cloud function, or provided by an automation platform.</p>
+                    </details>
+                     <details class="bg-
