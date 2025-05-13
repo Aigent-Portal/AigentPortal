@@ -1,555 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aigent Portal - Your Mobile AI Agent Interface</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        .section-fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        nav a:hover {
-             color: #1d4ed8;
-        }
-        .legal-dropdown details {
-            @apply bg-white p-4 rounded-lg shadow-sm mb-4;
-        }
-        .legal-dropdown summary {
-            @apply font-semibold text-xl text-gray-800 cursor-pointer list-none;
-        }
-        .legal-dropdown summary::-webkit-details-marker {}
-        .legal-dropdown details[open] summary {
-             @apply mb-3;
-        }
-        .legal-dropdown .details-content {
-             @apply text-gray-700 text-sm;
-        }
-        .legal-dropdown .details-content h3 {
-            @apply text-lg font-semibold text-gray-800 mt-4 mb-2;
-        }
-         .legal-dropdown .details-content p,
-         .legal-dropdown .details-content ul {
-             @apply mb-3;
-         }
-         .legal-dropdown .details-content ul {
-            @apply list-disc list-inside ml-4;
-         }
-        #mobile-menu {
-            transition: transform 0.3s ease-out;
-         }
-         .carousel-container {
-            position: relative;
-            overflow: hidden;
-         }
-         .carousel-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%; /* Ensure slides container takes full height */
-         }
-         .carousel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
-            box-sizing: border-box;
-            height: 100%; /* Ensure slide takes full height */
-         }
-         .carousel-slide img {
-             transition: transform 0.5s ease-in-out;
-             transform: scale(1.0);
-             display: block; /* Ensure image behaves like a block */
-             width: 100%; /* Make image fill width */
-             height: 100%; /* Make image fill height */
-             object-fit: contain; /* Keep entire image visible */
-         }
-         .carousel-slide-active img {
-             transform: scale(1.05);
-         }
-         .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            /* Adjusted padding and font size */
-            padding: 0.25rem 0.75rem; /* Smaller padding */
-            font-size: 1.25rem; /* Smaller font */
-            line-height: 1;
-            border-radius: 9999px;
-            cursor: pointer;
-            z-index: 10;
-         }
-         .carousel-button:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-         }
-         .carousel-button.prev {
-            left: 0.5rem; /* Closer to edge */
-         }
-         .carousel-button.next {
-            right: 0.5rem; /* Closer to edge */
-         }
-         /* Larger buttons on medium screens and up */
-         @media (min-width: 768px) {
-            .carousel-button {
-                padding: 0.5rem 1rem;
-                font-size: 1.5rem;
-            }
-            .carousel-button.prev {
-               left: 1rem;
-            }
-            .carousel-button.next {
-               right: 1rem;
-            }
-         }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aigent Portal - Your Mobile AI Agent Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        nav a:hover {
+             color: #1d4ed8;
+        }
+        .legal-dropdown details {
+            @apply bg-white p-4 rounded-lg shadow-sm mb-4;
+        }
+        .legal-dropdown summary {
+            @apply font-semibold text-xl text-gray-800 cursor-pointer list-none;
+        }
+        .legal-dropdown summary::-webkit-details-marker {}
+        .legal-dropdown details[open] summary {
+             @apply mb-3;
+        }
+        .legal-dropdown .details-content {
+             @apply text-gray-700 text-sm;
+        }
+        .legal-dropdown .details-content h3 {
+            @apply text-lg font-semibold text-gray-800 mt-4 mb-2;
+        }
+         .legal-dropdown .details-content p,
+         .legal-dropdown .details-content ul {
+             @apply mb-3;
+         }
+         .legal-dropdown .details-content ul {
+            @apply list-disc list-inside ml-4;
+         }
+        #mobile-menu {
+            transition: transform 0.3s ease-out;
+         }
+         .carousel-container {
+            position: relative;
+            overflow: hidden;
+         }
+         .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; /* Ensure slides container takes full height */
+         }
+         .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            height: 100%; /* Ensure slide takes full height */
+         }
+         .carousel-slide img {
+             transition: transform 0.5s ease-in-out;
+             transform: scale(1.0);
+             display: block; /* Ensure image behaves like a block */
+             width: 100%; /* Make image fill width */
+             height: 100%; /* Make image fill height */
+             object-fit: contain; /* Keep entire image visible */
+         }
+         .carousel-slide-active img {
+             transform: scale(1.05);
+         }
+         .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            /* Adjusted padding and font size */
+            padding: 0.25rem 0.75rem; /* Smaller padding */
+            font-size: 1.25rem; /* Smaller font */
+            line-height: 1;
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+         }
+         .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+         }
+         .carousel-button.prev {
+            left: 0.5rem; /* Closer to edge */
+         }
+         .carousel-button.next {
+            right: 0.5rem; /* Closer to edge */
+         }
+         /* Larger buttons on medium screens and up */
+         @media (min-width: 768px) {
+            .carousel-button {
+                padding: 0.5rem 1rem;
+                font-size: 1.5rem;
+            }
+            .carousel-button.prev {
+               left: 1rem;
+            }
+            .carousel-button.next {
+               right: 1rem;
+            }
+         }
 
-    </style>
+    </style>
 </head>
 <body class="bg-stone-100 text-gray-900">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#hero" title="Aigent Portal Home" class="flex-shrink-0">
-                <img src="logo.png" alt="Aigent Portal Logo" class="h-8 w-auto">
-            </a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#features" class="text-gray-700 hover:text-blue-700 transition duration-300">Features</a>
-                <a href="#how-it-works" class="text-gray-700 hover:text-blue-700 transition duration-300">How it Works</a>
-                <a href="#security" class="text-gray-700 hover:text-blue-700 transition duration-300">Security</a>
-                <a href="#faq" class="text-gray-700 hover:text-blue-700 transition duration-300">Q&A</a>
-                <a href="#download" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-sm font-medium">Download App</a>
-            </div>
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-700 focus:outline-none focus:text-blue-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 w-full z-40">
-             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Features</a>
-                <a href="#how-it-works" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">How it Works</a>
-                <a href="#security" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Security</a>
-                <a href="#faq" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Q&A</a>
-                <a href="#download" class="block bg-blue-600 text-white text-center mx-3 my-2 px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-base font-medium">Download App</a>
-             </div>
-        </div>
-    </header>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#hero" title="Aigent Portal Home" class="flex-shrink-0">
+                <img src="logo.png" alt="Aigent Portal Logo" class="h-8 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="text-gray-700 hover:text-blue-700 transition duration-300">Features</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-blue-700 transition duration-300">How it Works</a>
+                <a href="#security" class="text-gray-700 hover:text-blue-700 transition duration-300">Security</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-700 transition duration-300">Q&A</a>
+                <a href="#download" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-sm font-medium">Download App</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-700 focus:outline-none focus:text-blue-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md absolute top-full left-0 w-full z-40">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Features</a>
+                <a href="#how-it-works" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">How it Works</a>
+                <a href="#security" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Security</a>
+                <a href="#faq" class="block text-gray-700 hover:text-blue-700 hover:bg-stone-100 px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Q&A</a>
+                <a href="#download" class="block bg-blue-600 text-white text-center mx-3 my-2 px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-base font-medium">Download App</a>
+             </div>
+        </div>
+    </header>
 
-    <main>
+    <main>
 
-        <section id="hero" class="bg-gradient-to-br from-stone-50 to-stone-200 pt-20 pb-16 md:pt-32 md:pb-24">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight section-fade-in">
-                    Unlock Your AI Agents & Automations, <span class="text-blue-700">Securely on the Go.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto section-fade-in delay-1">
-                    Aigent Portal: The simple, secure mobile interface for interacting with your webhook-powered AI systems. Chat, trigger, and manage – all from your phone or tablet.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12 section-fade-in delay-2">
-                    <a href="#download" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg w-full sm:w-auto">
-                        Download on Google Play
-                    </a>
-                    <span class="text-gray-600 text-sm pt-2 sm:pt-0">Coming soon to iOS!</span>
-                </div>
+        <section id="hero" class="bg-gradient-to-br from-stone-50 to-stone-200 pt-20 pb-16 md:pt-32 md:pb-24">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight section-fade-in">
+                    Unlock Your AI Agents & Automations, <span class="text-blue-700">Securely on the Go.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl mx-auto section-fade-in delay-1">
+                    Aigent Portal: The simple, secure mobile interface for interacting with your webhook-powered AI systems. Chat, trigger, and manage – all from your phone or tablet.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12 section-fade-in delay-2">
+                    <a href="#download" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg w-full sm:w-auto">
+                        Download on Google Play
+                    </a>
+                    <span class="text-gray-600 text-sm pt-2 sm:pt-0">Coming soon to iOS!</span>
+                </div>
 
-                <div id="image-carousel" class="mt-12 max-w-4xl mx-auto section-fade-in delay-3 carousel-container rounded-lg shadow-xl bg-stone-300 h-72 sm:h-80 md:h-96 lg:h-[500px]">
-                    <div class="carousel-slides">
-                        <div class="carousel-slide flex items-center justify-center p-1">
-                            <img src="1.png" alt="Aigent Portal Screenshot 1" class="transform scale-100">
-                        </div>
-                        <div class="carousel-slide flex items-center justify-center p-1">
-                            <img src="2.png" alt="Aigent Portal Screenshot 2" class="transform scale-100">
-                        </div>
-                        <div class="carousel-slide flex items-center justify-center p-1">
-                             <img src="3.png" alt="Aigent Portal Screenshot 3" class="transform scale-100">
-                        </div>
-                         <div class="carousel-slide flex items-center justify-center p-1">
-                             <img src="4.png" alt="Aigent Portal Screenshot 4" class="transform scale-100">
-                        </div>
-                         <div class="carousel-slide flex items-center justify-center p-1">
-                             <img src="5.png" alt="Aigent Portal Screenshot 5" class="transform scale-100">
-                        </div>
-                         <div class="carousel-slide flex items-center justify-center p-1">
-                             <img src="6.png" alt="Aigent Portal Screenshot 6" class="transform scale-100">
-                        </div>
-                         <div class="carousel-slide flex items-center justify-center p-1">
-                             <img src="7.png" alt="Aigent Portal Screenshot 7" class="transform scale-100">
-                        </div>
-                    </div>
-                    <button class="carousel-button prev" aria-label="Previous Slide">❮</button>
-                    <button class="carousel-button next" aria-label="Next Slide">❯</button>
-                </div>
-            </div>
-        </section>
+                <div id="image-carousel" class="mt-12 max-w-4xl mx-auto section-fade-in delay-3 carousel-container rounded-lg shadow-xl bg-stone-300 h-72 sm:h-80 md:h-96 lg:h-[500px]">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="1.png" alt="Aigent Portal Screenshot 1" class="transform scale-100">
+                        </div>
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                            <img src="2.png" alt="Aigent Portal Screenshot 2" class="transform scale-100">
+                        </div>
+                        <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="3.png" alt="Aigent Portal Screenshot 3" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="4.png" alt="Aigent Portal Screenshot 4" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="5.png" alt="Aigent Portal Screenshot 5" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="6.png" alt="Aigent Portal Screenshot 6" class="transform scale-100">
+                        </div>
+                         <div class="carousel-slide flex items-center justify-center p-1">
+                             <img src="7.png" alt="Aigent Portal Screenshot 7" class="transform scale-100">
+                        </div>
+                    </div>
+                    <button class="carousel-button prev" aria-label="Previous Slide">❮</button>
+                    <button class="carousel-button next" aria-label="Next Slide">❯</button>
+                </div>
+            </div>
+        </section>
 
-        <section id="features" class="py-16 md:py-24 bg-stone-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
-                    Your AI Command Center in Your Pocket
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-1 text-center sm:text-left">
-                        <div class="flex justify-center sm:justify-start mb-4">
-                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Direct AI Chat</h3>
-                        <p class="text-gray-700 mb-4">Engage in real-time conversations. Send text, voice, images, documents, or snap pictures directly within the app.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2 text-center sm:text-left">
-                         <div class="flex justify-center sm:justify-start mb-4">
-                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Trigger Automations Instantly</h3>
-                        <p class="text-gray-700 mb-4">Kick off predefined webhook automations with a simple tap from anywhere. Streamline workflows effortlessly.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-3 text-center sm:text-left">
-                         <div class="flex justify-center sm:justify-start mb-4">
-                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Intuitive & Easy UI</h3>
-                        <p class="text-gray-700 mb-4">Designed with simplicity in mind. A clean, dedicated interface makes managing complex AI interactions straightforward.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4 text-center sm:text-left">
-                         <div class="flex justify-center sm:justify-start mb-4">
-                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Webhook Diagnostics</h3>
-                        <p class="text-gray-700 mb-4">Facing connection issues? Use the built-in diagnostic tools to test your webhook URLs and troubleshoot problems quickly.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="features" class="py-16 md:py-24 bg-stone-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Your AI Command Center in Your Pocket
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-1 text-center sm:text-left">
+                        <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Direct AI Chat</h3>
+                        <p class="text-gray-700 mb-4">Engage in real-time conversations. Send text, voice, images, documents, or snap pictures directly within the app.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Trigger Automations Instantly</h3>
+                        <p class="text-gray-700 mb-4">Kick off predefined webhook automations with a simple tap from anywhere. Streamline workflows effortlessly.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-3 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Intuitive & Easy UI</h3>
+                        <p class="text-gray-700 mb-4">Designed with simplicity in mind. A clean, dedicated interface makes managing complex AI interactions straightforward.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4 text-center sm:text-left">
+                         <div class="flex justify-center sm:justify-start mb-4">
+                           <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Webhook Diagnostics</h3>
+                        <p class="text-gray-700 mb-4">Facing connection issues? Use the built-in diagnostic tools to test your webhook URLs and troubleshoot problems quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="how-it-works" class="py-16 md:py-24 bg-gradient-to-br from-stone-50 to-stone-200">
-             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
-                    Simple Setup, Secure Connection
-                </h2>
-                <div class="max-w-2xl mx-auto section-fade-in delay-1">
-                     <div class="space-y-6">
-                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">1</div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-gray-900">Configure Your Agent</h4>
-                                <p class="text-gray-700">Set up your AI agent or automation to accept requests via a secure webhook URL.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-gray-900">Add to Aigent Portal</h4>
-                                <p class="text-gray-700">Enter the webhook URL and any necessary header authentication details into the Aigent Portal app.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-gray-900">Interact & Automate</h4>
-                                <p class="text-gray-700">Start chatting or triggering automations directly and securely. All data stays local!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="how-it-works" class="py-16 md:py-24 bg-gradient-to-br from-stone-50 to-stone-200">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Simple Setup, Secure Connection
+                </h2>
+                <div class="max-w-2xl mx-auto section-fade-in delay-1">
+                     <div class="space-y-6">
+                         <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">1</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Configure Your Agent</h4>
+                                <p class="text-gray-700">Set up your AI agent or automation to accept requests via a secure webhook URL.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Add to Aigent Portal</h4>
+                                <p class="text-gray-700">Enter the webhook URL and any necessary header authentication details into the Aigent Portal app.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Interact & Automate</h4>
+                                <p class="text-gray-700">Start chatting or triggering automations directly and securely. All data stays local!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="security" class="py-16 md:py-24 bg-stone-100">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-fade-in">
-                    Your Security is Our Priority. <span class="text-blue-700">Period.</span>
-                </h2>
-                <p class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto section-fade-in delay-1">
-                    We built Aigent Portal with a privacy-first approach. Your data remains yours, always.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                     <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-2">No Sensitive Credentials</h4>
-                        <p class="text-gray-700">Connects via webhooks and supports header authentication – no need to store vulnerable API keys in the app.</p>
-                    </div>
-                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm ring-2 ring-blue-200 section-fade-in delay-3">
-                        <h4 class="text-lg font-semibold text-blue-800 mb-2">We Collect ZERO Data</h4>
-                        <p class="text-blue-700">Aigent Portal does *not* collect, track, or transmit *any* of your personal data or conversation content. Ever.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Everything Stays On-Device</h4>
-                        <p class="text-gray-700">All your configurations (webhook URLs, auth details) are stored securely and solely on your local device.</p>
-                    </div>
-                </div>
-                <p class="mt-12 text-gray-700 section-fade-in delay-4">
-                    See our full <a href="#privacy-policy" class="text-blue-700 hover:underline">Privacy Policy</a> below for details.
-                </p>
-            </div>
-        </section>
+        <section id="security" class="py-16 md:py-24 bg-stone-100">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-fade-in">
+                    Your Security is Our Priority. <span class="text-blue-700">Period.</span>
+                </h2>
+                <p class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto section-fade-in delay-1">
+                    We built Aigent Portal with a privacy-first approach. Your data remains yours, always.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                     <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-2">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">No Sensitive Credentials</h4>
+                        <p class="text-gray-700">Connects via webhooks and supports header authentication – no need to store vulnerable API keys in the app.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm ring-2 ring-blue-200 section-fade-in delay-3">
+                        <h4 class="text-lg font-semibold text-blue-800 mb-2">We Collect ZERO Data</h4>
+                        <p class="text-blue-700">Aigent Portal does *not* collect, track, or transmit *any* of your personal data or conversation content. Ever.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm section-fade-in delay-4">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Everything Stays On-Device</h4>
+                        <p class="text-gray-700">All your configurations (webhook URLs, auth details) are stored securely and solely on your local device.</p>
+                    </div>
+                </div>
+                <p class="mt-12 text-gray-700 section-fade-in delay-4">
+                    See our full <a href="#privacy-policy" class="text-blue-700 hover:underline">Privacy Policy</a> below for details.
+                </p>
+            </div>
+        </section>
 <section id="faq" class="py-16 md:py-24 bg-stone-200">
-             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
-                    Frequently Asked Questions
-                </h2>
-                <div class="max-w-4xl mx-auto space-y-4">
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-1">
-                        <summary class="font-semibold text-gray-800 list-none">What are webhooks?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Webhooks are automated messages sent from apps when something happens. Aigent Portal sends your inputs (text, files, triggers) to a unique URL you provide, which your AI agent or automation listens to.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-2">
-                        <summary class="font-semibold text-gray-800 list-none">Is Aigent Portal secure?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Yes. We don't require API keys, collect zero user data, and store all configuration locally on your device. Communication is direct between your app and your webhook URL. Header authentication is supported for endpoint security.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-3">
-                        <summary class="font-semibold text-gray-800 list-none">What kind of AI agents or automations can I connect?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Any system that can listen and respond to incoming webhooks! This includes custom AI models, platforms like n8n or Make, cloud functions, or your own backend applications.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
-                        <summary class="font-semibold text-gray-800 list-none">Do I need my own server?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">You need a publicly accessible webhook URL for your AI agent/automation. This could be self-hosted, a cloud function, or provided by an automation platform.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
-                        <summary class="font-semibold text-gray-800 list-none">What data does the app store?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">Only the configuration data you enter: webhook URLs and optional header authentication details. This is stored locally on your device and never sent to us.</p>
-                    </details>
-                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
-                        <summary class="font-semibold text-gray-800 list-none">When is the iOS version coming?</summary>
-                        <p class="mt-2 text-gray-700 text-sm">We are actively working on the iOS version and plan to release it soon! Stay tuned.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Frequently Asked Questions
+                </h2>
+                <div class="max-w-4xl mx-auto space-y-4">
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-1">
+                        <summary class="font-semibold text-gray-800 list-none">What are webhooks?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Webhooks are automated messages sent from apps when something happens. Aigent Portal sends your inputs (text, files, triggers) to a unique URL you provide, which your AI agent or automation listens to.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-2">
+                        <summary class="font-semibold text-gray-800 list-none">Is Aigent Portal secure?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Yes. We don't require API keys, collect zero user data, and store all configuration locally on your device. Communication is direct between your app and your webhook URL. Header authentication is supported for endpoint security.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-3">
+                        <summary class="font-semibold text-gray-800 list-none">What kind of AI agents or automations can I connect?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Any system that can listen and respond to incoming webhooks! This includes custom AI models, platforms like n8n or Make, cloud functions, or your own backend applications.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
+                        <summary class="font-semibold text-gray-800 list-none">Do I need my own server?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">You need a publicly accessible webhook URL for your AI agent/automation. This could be self-hosted, a cloud function, or provided by an automation platform.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
+                        <summary class="font-semibold text-gray-800 list-none">What data does the app store?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">Only the configuration data you enter: webhook URLs and optional header authentication details. This is stored locally on your device and never sent to us.</p>
+                    </details>
+                     <details class="bg-white p-4 rounded-lg shadow-sm cursor-pointer section-fade-in delay-4">
+                        <summary class="font-semibold text-gray-800 list-none">When is the iOS version coming?</summary>
+                        <p class="mt-2 text-gray-700 text-sm">We are actively working on the iOS version and plan to release it soon! Stay tuned.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
 
-        <section id="legal" class="py-16 md:py-24 bg-stone-100 legal-dropdown">
-             <div class="container mx-auto px-6 max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
-                    Legal Information
-                </h2>
-                <details id="privacy-policy" class="section-fade-in delay-1">
-                    <summary>Privacy Policy</summary>
-                    <div class="details-content mt-4">
-                         <p><strong>Effective Date:</strong> April 14, 2025</p>
-                         <h3>Introduction</h3>
-                         <p>Welcome to Aigent Portal ("the App"). This App provides a mobile interface to interact with your own AI agents and automations via webhook URLs. Your privacy is critically important to us. This Privacy Policy explains how we handle information within the App, emphasizing our commitment to collecting no user data.</p>
-                         <h3>Information We Do NOT Collect</h3>
-                         <p>Aigent Portal is designed with privacy at its core. We DO NOT collect, store, transmit, or process any of the following:</p>
-                         <ul>
-                             <li><strong>Personal Information:</strong> We do not require you to provide any personal information like your name, email address, phone number, or location. No account creation is necessary.</li>
-                             <li><strong>Conversation Data:</strong> Any text, voice messages, images, documents, or other content you send through the App to your webhook URLs is NOT collected, stored, or seen by us. It is transmitted directly from your device to the URL you configure.</li>
-                             <li><strong>Usage Data:</strong> We do not collect analytics about how you use the App, such as feature usage frequency, session duration, or crash reports (unless explicitly added later and disclosed).</li>
-                             <li><strong>Device Information:</strong> We do not collect specific information about your device, such as device ID, operating system version, or hardware model, beyond what is necessary for the basic functioning of any standard mobile application.</li>
-                         </ul>
-                         <h3>Information We Store (Locally Only)</h3>
-                         <p>The only information the App stores is the configuration data you provide directly within the App:</p>
-                         <ul>
-                             <li>The webhook URLs you enter to connect to your agents/automations.</li>
-                             <li>Any corresponding header authentication details (e.g., tokens, keys) you choose to save for those URLs.</li>
-                         </ul>
-                         <p><strong>This information is stored exclusively on your local device.</strong> It is never transmitted to our servers or any third party. If you uninstall the App, this data is typically removed according to the standard behavior of your device's operating system.</p>
-                         <h3>How Information is Used</h3>
-                         <p>Since we do not collect personal data or conversation content, we do not use such information.</p>
-                         <p>The locally stored configuration data (webhook URLs and headers) is used solely for the core functionality of the App: to enable the App to send requests to the specific endpoints you have configured.</p>
-                         <h3>Data Security</h3>
-                         <p>We rely on the security features of your mobile device's operating system to protect the locally stored configuration data. You are responsible for ensuring the security of the webhook URLs you use and the systems they connect to. We recommend using HTTPS for your webhook URLs and utilizing the header authentication feature for added security where appropriate.</p>
-                         <h3>Third-Party Services</h3>
-                         <p>Aigent Portal currently does not integrate with any third-party services for analytics, advertising, or other purposes that would involve sharing data.</p>
-                         <h3>Children's Privacy</h3>
-                         <p>The App is not intended for use by children under the age of 13 (or the relevant age of consent in your jurisdiction). We do not knowingly collect any information from children.</p>
-                         <h3>Changes to This Privacy Policy</h3>
-                         <p>We may update this Privacy Policy from time to time. If we make significant changes, we will provide notice through the App or on our website. Your continued use of the App after such changes constitutes your acceptance of the new policy.</p>
-                         <h3>Contact Us</h3>
-                         <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:AigentPortal@gmail.com" class="text-blue-700 hover:underline">AigentPortal@gmail.com</a></p>
-                    </div>
-                </details>
-                <details id="terms-of-service" class="section-fade-in delay-2">
-                     <summary>Terms of Service</summary>
-                     <div class="details-content mt-4">
-                         <p><strong>Effective Date:</strong> April 14, 2025</p>
-                         <h3>1. Agreement to Terms</h3>
-                         <p>By downloading, installing, or using the Aigent Portal mobile application ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
-                         <h3>2. License</h3>
-                         <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your personal or internal business purposes on mobile devices that you own or control, subject to these Terms.</p>
-                         <h3>3. App Functionality</h3>
-                         <p>The App allows you to configure connections to your own AI agents or automation services via user-provided webhook URLs. You can send data (text, files, voice) and trigger actions through these configured webhooks. The App facilitates this interaction but does not provide the AI agents or automation services themselves.</p>
-                         <h3>4. User Responsibilities</h3>
-                         <p>You are solely responsible for:</p>
-                         <ul>
-                             <li>Providing accurate webhook URLs and any necessary authentication details (e.g., headers).</li>
-                             <li>Ensuring you have the right to interact with the webhook URLs you configure.</li>
-                             <li>The security, availability, and proper functioning of the external AI agents, automation services, and webhook endpoints you connect to the App.</li>
-                             <li>The legality, accuracy, and appropriateness of the data you transmit and the actions you trigger using the App.</li>
-                             <li>Maintaining the confidentiality of any authentication details used.</li>
-                             <li>Complying with all applicable laws and regulations related to your use of the App and the services you connect it to.</li>
-                             <li>Not using the App for any illegal, harmful, or unauthorized purpose.</li>
-                             <li>Not attempting to reverse engineer, decompile, or disassemble the App.</li>
-                         </ul>
-                         <h3>5. Intellectual Property</h3>
-                         <p>The App, including its design, code, graphics, and features, is the property of the App developers and is protected by intellectual property laws. The license granted does not transfer any ownership rights.</p>
-                         <h3>6. Disclaimers</h3>
-                         <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
-                         <p>WE DO NOT WARRANT THAT:</p>
-                         <ul>
-                            <li>THE APP WILL MEET YOUR REQUIREMENTS.</li>
-                            <li>THE APP WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE.</li>
-                            <li>THE RESULTS OBTAINED FROM THE USE OF THE APP (INCLUDING SUCCESSFUL DELIVERY TO OR RESPONSE FROM YOUR WEBHOOKS) WILL BE ACCURATE OR RELIABLE.</li>
-                            <li>THE QUALITY OF ANY SERVICES, INFORMATION, OR OTHER MATERIAL ACCESSED THROUGH YOUR CONFIGURED WEBHOOKS WILL MEET YOUR EXPECTATIONS.</li>
-                         </ul>
-                         <p>We are not responsible for the performance, security, or data handling practices of the third-party services or custom systems you connect to via webhooks.</p>
-                         <h3>7. Limitation of Liability</h3>
-                         <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE APP DEVELOPERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (a) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE APP; (b) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON OR THROUGH THE APP (INCLUDING YOUR CONFIGURED WEBHOOK ENDPOINTS); OR (c) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT (INCLUDING YOUR LOCALLY STORED CONFIGURATION), EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
-                         <h3>8. Termination</h3>
-                         <p>We may terminate or suspend your license to use the App at any time, without prior notice or liability, for any reason, including if you breach these Terms.</p>
-                         <h3>9. Governing Law</h3>
-                         <p>These Terms shall be governed and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions. (Please replace `[Your Jurisdiction]` with the appropriate legal jurisdiction).</p>
-                         <h3>10. Changes to Terms</h3>
-                         <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide notice (e.g., within the App or on our website) prior to the new terms taking effect. What constitutes a material change will be determined at our sole discretion. Your continued use of the App after any changes constitutes your acceptance of the new Terms.</p>
-                         <h3>11. Contact Us</h3>
-                         <p>If you have any questions about these Terms, please contact us at: <a href="mailto:AigentPortal@gmail.com" class="text-blue-700 hover:underline">AigentPortal@gmail.com</a></p>
-                     </div>
-                </details>
-             </div>
-        </section>
+        <section id="legal" class="py-16 md:py-24 bg-stone-100 legal-dropdown">
+             <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 section-fade-in">
+                    Legal Information
+                </h2>
+                <details id="privacy-policy" class="section-fade-in delay-1">
+                    <summary>Privacy Policy</summary>
+                    <div class="details-content mt-4">
+                         <p><strong>Effective Date:</strong> April 14, 2025</p>
+                         <h3>Introduction</h3>
+                         <p>Welcome to Aigent Portal ("the App"). This App provides a mobile interface to interact with your own AI agents and automations via webhook URLs. Your privacy is critically important to us. This Privacy Policy explains how we handle information within the App, emphasizing our commitment to collecting no user data.</p>
+                         <h3>Information We Do NOT Collect</h3>
+                         <p>Aigent Portal is designed with privacy at its core. We DO NOT collect, store, transmit, or process any of the following:</p>
+                         <ul>
+                             <li><strong>Personal Information:</strong> We do not require you to provide any personal information like your name, email address, phone number, or location. No account creation is necessary.</li>
+                             <li><strong>Conversation Data:</strong> Any text, voice messages, images, documents, or other content you send through the App to your webhook URLs is NOT collected, stored, or seen by us. It is transmitted directly from your device to the URL you configure.</li>
+                             <li><strong>Usage Data:</strong> We do not collect analytics about how you use the App, such as feature usage frequency, session duration, or crash reports (unless explicitly added later and disclosed).</li>
+                             <li><strong>Device Information:</strong> We do not collect specific information about your device, such as device ID, operating system version, or hardware model, beyond what is necessary for the basic functioning of any standard mobile application.</li>
+                         </ul>
+                         <h3>Information We Store (Locally Only)</h3>
+                         <p>The only information the App stores is the configuration data you provide directly within the App:</p>
+                         <ul>
+                             <li>The webhook URLs you enter to connect to your agents/automations.</li>
+                             <li>Any corresponding header authentication details (e.g., tokens, keys) you choose to save for those URLs.</li>
+                         </ul>
+                         <p><strong>This information is stored exclusively on your local device.</strong> It is never transmitted to our servers or any third party. If you uninstall the App, this data is typically removed according to the standard behavior of your device's operating system.</p>
+                         <h3>How Information is Used</h3>
+                         <p>Since we do not collect personal data or conversation content, we do not use such information.</p>
+                         <p>The locally stored configuration data (webhook URLs and headers) is used solely for the core functionality of the App: to enable the App to send requests to the specific endpoints you have configured.</p>
+                         <h3>Data Security</h3>
+                         <p>We rely on the security features of your mobile device's operating system to protect the locally stored configuration data. You are responsible for ensuring the security of the webhook URLs you use and the systems they connect to. We recommend using HTTPS for your webhook URLs and utilizing the header authentication feature for added security where appropriate.</p>
+                         <h3>Third-Party Services</h3>
+                         <p>Aigent Portal currently does not integrate with any third-party services for analytics, advertising, or other purposes that would involve sharing data.</p>
+                         <h3>Children's Privacy</h3>
+                         <p>The App is not intended for use by children under the age of 13 (or the relevant age of consent in your jurisdiction). We do not knowingly collect any information from children.</p>
+                         <h3>Changes to This Privacy Policy</h3>
+                         <p>We may update this Privacy Policy from time to time. If we make significant changes, we will provide notice through the App or on our website. Your continued use of the App after such changes constitutes your acceptance of the new policy.</p>
+                         <h3>Contact Us</h3>
+                         <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:AigentPortal@gmail.com" class="text-blue-700 hover:underline">AigentPortal@gmail.com</a></p>
+                    </div>
+                </details>
+                <details id="terms-of-service" class="section-fade-in delay-2">
+                     <summary>Terms of Service</summary>
+                     <div class="details-content mt-4">
+                         <p><strong>Effective Date:</strong> April 14, 2025</p>
+                         <h3>1. Agreement to Terms</h3>
+                         <p>By downloading, installing, or using the Aigent Portal mobile application ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+                         <h3>2. License</h3>
+                         <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your personal or internal business purposes on mobile devices that you own or control, subject to these Terms.</p>
+                         <h3>3. App Functionality</h3>
+                         <p>The App allows you to configure connections to your own AI agents or automation services via user-provided webhook URLs. You can send data (text, files, voice) and trigger actions through these configured webhooks. The App facilitates this interaction but does not provide the AI agents or automation services themselves.</p>
+                         <h3>4. User Responsibilities</h3>
+                         <p>You are solely responsible for:</p>
+                         <ul>
+                             <li>Providing accurate webhook URLs and any necessary authentication details (e.g., headers).</li>
+                             <li>Ensuring you have the right to interact with the webhook URLs you configure.</li>
+                             <li>The security, availability, and proper functioning of the external AI agents, automation services, and webhook endpoints you connect to the App.</li>
+                             <li>The legality, accuracy, and appropriateness of the data you transmit and the actions you trigger using the App.</li>
+                             <li>Maintaining the confidentiality of any authentication details used.</li>
+                             <li>Complying with all applicable laws and regulations related to your use of the App and the services you connect it to.</li>
+                             <li>Not using the App for any illegal, harmful, or unauthorized purpose.</li>
+                             <li>Not attempting to reverse engineer, decompile, or disassemble the App.</li>
+                         </ul>
+                         <h3>5. Intellectual Property</h3>
+                         <p>The App, including its design, code, graphics, and features, is the property of the App developers and is protected by intellectual property laws. The license granted does not transfer any ownership rights.</p>
+                         <h3>6. Disclaimers</h3>
+                         <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+                         <p>WE DO NOT WARRANT THAT:</p>
+                         <ul>
+                            <li>THE APP WILL MEET YOUR REQUIREMENTS.</li>
+                            <li>THE APP WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE.</li>
+                            <li>THE RESULTS OBTAINED FROM THE USE OF THE APP (INCLUDING SUCCESSFUL DELIVERY TO OR RESPONSE FROM YOUR WEBHOOKS) WILL BE ACCURATE OR RELIABLE.</li>
+                            <li>THE QUALITY OF ANY SERVICES, INFORMATION, OR OTHER MATERIAL ACCESSED THROUGH YOUR CONFIGURED WEBHOOKS WILL MEET YOUR EXPECTATIONS.</li>
+                         </ul>
+                         <p>We are not responsible for the performance, security, or data handling practices of the third-party services or custom systems you connect to via webhooks.</p>
+                         <h3>7. Limitation of Liability</h3>
+                         <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE APP DEVELOPERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (a) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE APP; (b) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON OR THROUGH THE APP (INCLUDING YOUR CONFIGURED WEBHOOK ENDPOINTS); OR (c) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT (INCLUDING YOUR LOCALLY STORED CONFIGURATION), EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+                         <h3>8. Termination</h3>
+                         <p>We may terminate or suspend your license to use the App at any time, without prior notice or liability, for any reason, including if you breach these Terms.</p>
+                         <h3>9. Governing Law</h3>
+                         <p>These Terms shall be governed and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions. (Please replace `[Your Jurisdiction]` with the appropriate legal jurisdiction).</p>
+                         <h3>10. Changes to Terms</h3>
+                         <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide notice (e.g., within the App or on our website) prior to the new terms taking effect. What constitutes a material change will be determined at our sole discretion. Your continued use of the App after any changes constitutes your acceptance of the new Terms.</p>
+                         <h3>11. Contact Us</h3>
+                         <p>If you have any questions about these Terms, please contact us at: <a href="mailto:AigentPortal@gmail.com" class="text-blue-700 hover:underline">AigentPortal@gmail.com</a></p>
+                     </div>
+                </details>
+             </div>
+        </section>
 
-        <section id="download" class="py-16 md:py-24 bg-blue-700 text-white">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-fade-in">Ready to Mobilize Your AI?</h2>
-                <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto section-fade-in delay-1">
-                    Download Aigent Portal today and experience seamless, secure interaction with your agents and automations.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 section-fade-in delay-2">
-                    <a href="#" class="bg-white text-blue-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18a4.6 4.6 0 0 1-1.3-.2A4.7 4.7 0 0 1 3 13.6V10c0-.2.1-.4.2-.5l9.2-5.3c.2-.1.4-.1.6 0l9.2 5.3c.1.1.2.3.2.5v3.6a4.7 4.7 0 0 1-2.7 4.2 4.6 4.6 0 0 1-1.3.2l-7.5-4.3-7.5 4.3zM12 4.8L4.5 9.1v4.5c0 1.6 1 3 2.5 3.7l5-2.9 5 2.9c1.5-.7 2.5-2.1 2.5-3.7V9.1L12 4.8z"/></svg>
-                        <span>Download on Google Play</span>
-                    </a>
-                    <div class="mt-4 sm:mt-0">
-                        <img src="playstore-qr.png" alt="Google Play Store QR Code" class="w-32 h-32 rounded-lg shadow-md mx-auto max-w-full" onerror="this.style.display='none'; this.onerror=null; const ph=document.createElement('div'); ph.className='w-32 h-32 bg-white rounded-lg shadow-md mx-auto text-blue-700 flex items-center justify-center text-xs p-2'; ph.textContent='QR Code Image'; this.parentNode.insertBefore(ph, this);">
-                    </div>
-                </div>
-                 <span class="block text-blue-200 text-sm mt-6">Coming soon to iOS!</span>
-            </div>
-        </section>
+        <section id="download" class="py-16 md:py-24 bg-blue-700 text-white">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-fade-in">Ready to Mobilize Your AI?</h2>
+                <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto section-fade-in delay-1">
+                    Download Aigent Portal today and experience seamless, secure interaction with your agents and automations.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 section-fade-in delay-2">
+                    <a href="https://play.google.com/store/apps/details?id=com.aigent.portal&pcampaignid=web_share" class="bg-white text-blue-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18a4.6 4.6 0 0 1-1.3-.2A4.7 4.7 0 0 1 3 13.6V10c0-.2.1-.4.2-.5l9.2-5.3c.2-.1.4-.1.6 0l9.2 5.3c.1.1.2.3.2.5v3.6a4.7 4.7 0 0 1-2.7 4.2 4.6 4.6 0 0 1-1.3.2l-7.5-4.3-7.5 4.3zM12 4.8L4.5 9.1v4.5c0 1.6 1 3 2.5 3.7l5-2.9 5 2.9c1.5-.7 2.5-2.1 2.5-3.7V9.1L12 4.8z"/></svg>
+                        <span>Download on Google Play</span>
+                    </a>
+                    <div class="mt-4 sm:mt-0">
+                        <img src="playstore-qr.png" alt="Google Play Store QR Code" class="w-32 h-32 rounded-lg shadow-md mx-auto max-w-full" onerror="this.style.display='none'; this.onerror=null; const ph=document.createElement('div'); ph.className='w-32 h-32 bg-white rounded-lg shadow-md mx-auto text-blue-700 flex items-center justify-center text-xs p-2'; ph.textContent='QR Code Image'; this.parentNode.insertBefore(ph, this);">
+                    </div>
+                </div>
+                 <span class="block text-blue-200 text-sm mt-6">Coming soon to iOS!</span>
+            </div>
+        </section>
 
-    </main>
+    </main>
 
-    <footer class="bg-stone-800 text-stone-300 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-4">
-                <a href="#privacy-policy" class="px-3 hover:text-white transition duration-300">Privacy Policy</a> |
-                <a href="#terms-of-service" class="px-3 hover:text-white transition duration-300">Terms of Service</a> |
-                <a href="mailto:AigentPortal@gmail.com" class="px-3 hover:text-white transition duration-300">Contact Us</a>
-            </div>
-            <p>© 2025 Aigent Portal. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer class="bg-stone-800 text-stone-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#privacy-policy" class="px-3 hover:text-white transition duration-300">Privacy Policy</a> |
+                <a href="#terms-of-service" class="px-3 hover:text-white transition duration-300">Terms of Service</a> |
+                <a href="mailto:AigentPortal@gmail.com" class="px-3 hover:text-white transition duration-300">Contact Us</a>
+            </div>
+            <p>© 2025 Aigent Portal. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script>
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuLinks = mobileMenu.querySelectorAll('a');
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
 
-        function closeMenu() {
-            mobileMenu.classList.add('hidden');
-        }
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+        }
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(closeMenu, 150);
-            });
-        });
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
 
-        document.addEventListener('click', (event) => {
-            if (!mobileMenu.classList.contains('hidden') && !menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
-                closeMenu();
-            }
-        });
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && !menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                closeMenu();
+            }
+        });
 
-        const carousel = document.getElementById('image-carousel');
-        if (carousel) {
-            const slidesContainer = carousel.querySelector('.carousel-slides');
-            const slideElements = carousel.querySelectorAll('.carousel-slide');
-            const prevButton = carousel.querySelector('.carousel-button.prev');
-            const nextButton = carousel.querySelector('.carousel-button.next');
-            const slideCount = slideElements.length;
-            let currentSlide = 0;
-            let autoSlideInterval;
+        const carousel = document.getElementById('image-carousel');
+        if (carousel) {
+            const slidesContainer = carousel.querySelector('.carousel-slides');
+            const slideElements = carousel.querySelectorAll('.carousel-slide');
+            const prevButton = carousel.querySelector('.carousel-button.prev');
+            const nextButton = carousel.querySelector('.carousel-button.next');
+            const slideCount = slideElements.length;
+            let currentSlide = 0;
+            let autoSlideInterval;
 
-            function showSlide(index) {
-                if (!slidesContainer || slideCount === 0) return;
-                const newIndex = (index + slideCount) % slideCount;
-                slideElements[currentSlide]?.classList.remove('carousel-slide-active');
-                slidesContainer.style.transform = `translateX(-${newIndex * 100}%)`;
-                slideElements[newIndex]?.classList.add('carousel-slide-active');
-                currentSlide = newIndex;
-            }
+            function showSlide(index) {
+                if (!slidesContainer || slideCount === 0) return;
+                const newIndex = (index + slideCount) % slideCount;
+                slideElements[currentSlide]?.classList.remove('carousel-slide-active');
+                slidesContainer.style.transform = `translateX(-${newIndex * 100}%)`;
+                slideElements[newIndex]?.classList.add('carousel-slide-active');
+                currentSlide = newIndex;
+            }
 
-            function nextSlide() {
-                showSlide(currentSlide + 1);
-            }
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
 
-            function prevSlide() {
-                showSlide(currentSlide - 1);
-            }
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
 
-            function startAutoSlide(interval = 5000) {
-                stopAutoSlide();
-                if (slideCount > 1) {
-                   autoSlideInterval = setInterval(nextSlide, interval);
-                }
-            }
+            function startAutoSlide(interval = 5000) {
+                stopAutoSlide();
+                if (slideCount > 1) {
+                   autoSlideInterval = setInterval(nextSlide, interval);
+                }
+            }
 
-            function stopAutoSlide() {
-                clearInterval(autoSlideInterval);
-            }
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
 
-            if (prevButton && nextButton && slideElements.length > 1) {
-                 prevButton.addEventListener('click', () => {
-                    prevSlide();
-                    stopAutoSlide();
-                 });
-                 nextButton.addEventListener('click', () => {
-                    nextSlide();
-                    stopAutoSlide();
-                 });
-                 carousel.addEventListener('mouseenter', stopAutoSlide);
-                 carousel.addEventListener('mouseleave', startAutoSlide);
-                 // Initialize first slide and start auto-sliding only after DOM is ready
-                 document.addEventListener('DOMContentLoaded', () => {
-                    showSlide(0); 
-                    startAutoSlide();
-                 });
+            if (prevButton && nextButton && slideElements.length > 1) {
+                 prevButton.addEventListener('click', () => {
+                    prevSlide();
+                    stopAutoSlide();
+                 });
+                 nextButton.addEventListener('click', () => {
+                    nextSlide();
+                    stopAutoSlide();
+                 });
+                 carousel.addEventListener('mouseenter', stopAutoSlide);
+                 carousel.addEventListener('mouseleave', startAutoSlide);
+                 // Initialize first slide and start auto-sliding only after DOM is ready
+                 document.addEventListener('DOMContentLoaded', () => {
+                    showSlide(0); 
+                    startAutoSlide();
+                 });
 
-            } else {
-                 if (prevButton) prevButton.style.display = 'none';
-                 if (nextButton) nextButton.style.display = 'none';
-                 // Initialize first slide if only one slide exists
-                 if (slideCount === 1) {
-                     document.addEventListener('DOMContentLoaded', () => {
-                         slideElements[0]?.classList.add('carousel-slide-active');
-                     });
-                 }
-            }
-        }
-    </script>
+            } else {
+                 if (prevButton) prevButton.style.display = 'none';
+                 if (nextButton) nextButton.style.display = 'none';
+                 // Initialize first slide if only one slide exists
+                 if (slideCount === 1) {
+                     document.addEventListener('DOMContentLoaded', () => {
+                         slideElements[0]?.classList.add('carousel-slide-active');
+                     });
+                 }
+            }
+        }
+    </script>
 
 </body>
 </html>
-
-
-              
