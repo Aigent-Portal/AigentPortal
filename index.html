@@ -322,3 +322,33 @@
                         <p class="mt-2 text-gray-700 text-sm">You need a publicly accessible webhook URL for your AI agent/automation. This could be self-hosted, a cloud function, or provided by an automation platform.</p>
                     </details>
                      <details class="bg-
+<script>
+    const carousel = document.querySelector('.carousel-slides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-button.prev');
+    const nextBtn = document.querySelector('.carousel-button.next');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+        updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+        updateCarousel();
+    });
+
+    // Optional: Resize handler to force recalculation if necessary
+    window.addEventListener('resize', updateCarousel);
+
+    // Ensure all download buttons have the correct link
+    document.querySelectorAll('a[href*="play.google.com"]').forEach(el => {
+        el.href = "https://play.google.com/store/apps/details?id=com.aigent.portal&pcampaignid=web_share";
+    });
+</script>
